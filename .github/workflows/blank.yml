@@ -1,0 +1,26 @@
+
+name: Spellcheck README
+
+on:
+  push:
+    paths:
+      - "README.md"
+      - ".github/workflows/spellcheck.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - ".github/workflows/spellcheck.yml"
+
+jobs:
+  spellcheck:
+    name: Spellcheck README.md
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run codespell
+        uses: codespell-project/actions-codespell@v2
+        with:
+          files: README.md
